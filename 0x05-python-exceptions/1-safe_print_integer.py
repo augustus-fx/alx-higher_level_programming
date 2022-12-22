@@ -2,7 +2,6 @@
 
 def safe_print_integer(value):
     """Print an integer with {:d}".format().
-
     Args:
 	value (int): The integer to print.
 
@@ -10,7 +9,8 @@ def safe_print_integer(value):
 	If a TypeError or valueError occurs - Flase.
 	Otherwise - True
     """
-   Try:
-	print("{:d}".format(value))
-	return (True)
-   except (TypeError. valueError):
+    try:
+        print("{:d}".format(value))
+        return (True)
+    except (TypeError. valueError):
+        return (False)
