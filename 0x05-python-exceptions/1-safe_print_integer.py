@@ -7,10 +7,10 @@ def safe_print_integer(value):
 
     Returns:
 	If a TypeError or valueError occurs - Flase.
-	Otherwise - True
+	Otherwise - True.
     """
     try:
         print("{:d}".format(value))
         return (True)
-    except (TypeError. valueError):
+    except (TypeError, valueError):
         return (False)
