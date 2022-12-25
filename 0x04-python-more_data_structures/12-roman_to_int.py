@@ -16,8 +16,10 @@ def roman_to_int(roman_string):
 
     if not isinstance(roman_string, str):
         return 0
+
     rom_n = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
     list_keys = list(rom_n.keys())
+
     num = 0
     last_rom = 0
     list_num = [0]
@@ -30,6 +32,7 @@ def roman_to_int(roman_string):
                     list_num = [rom_n.get(ch)]
                 else:
                     list_num.append(room_n.get(ch))
+
                 last_rom = rom_n.get(ch)
 
     num += to_subtract(list_num)
