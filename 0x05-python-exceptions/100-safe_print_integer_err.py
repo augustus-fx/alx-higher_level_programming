@@ -8,14 +8,14 @@ def safe_print_integer_err(value):
     If a ValueError message is caught, a corresponding
     message is printed to standard error.
     Args:
-	value (int): The integer to pring.
+	value (int): The integer to print.
     Returns:
 	If a TypeError or ValueError occurs - False.
 	Otherwise - True.
     """
     try:
-        print("{:d}".format(value)
-	return (True)
+        print("{:d}".format(value))
+        return (True)
     except (TypeError, ValueError):
-	print("Exception: {}".format(sys.exec_info()[1]), file=sys.stdrr)
-	return (False)
+        print("Exception: {}".format(sys.exec_info()[1]), file=sys.stderr)
+        return (False)
