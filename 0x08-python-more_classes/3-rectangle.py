@@ -1,119 +1,152 @@
 #!/usr/bin/python3
-"""
-
-This module is composed by a class that defines a Rectangle
-
-
-"""
+"""Defines a Rectangle class."""
 
 
 class Rectangle:
-    """ Class that defines a rectangle """
+    """Initializes rectangle objects with width and height attribs.
+
+    It defines optional width and height private instance attributes upon
+    object creation and defines instance methods to get and set them. In
+    addition It has public instance methods to get the area and perimeter. An
+    additional 'magic' method __str__ is used to showcase the rectangle in
+    terminal.
+    """
 
     def __init__(self, width=0, height=0):
-        """ Method that initializes the instance
+        """Declare the width and height of rectangle object upon creation.
 
         Args:
-            width: rectangle width
-            height: rectangle height
+            self (Rectangle's object): Refers to instantiated object
+            width (int, optional): Width of rectangle object
+            height (int, optional): Height or rectangle object
 
-
-
+        Returns:
+            None
         """
-
-        self.width = width
-        self.height = height
+        handle_exception(width, "width")
+        handle_exception(height, "height")
+        self.__width = width
+        self.__height = height
+        return None
 
     @property
     def width(self):
-        """ method that returns the value of the width
-
-        Returns:
-            rectangle width
-
-
-        """
-
-        return self.__width
-
-    @width.setter
-    def width(self, value):
-        """ method that defines the width
+        """Getter method to retrieve the width.
 
         Args:
-            value: width
+            self (Rectangle's object): Refers to instantiated object
 
-        Raises:
-            TypeError: if width is not an integer
-            ValueError: if width is less than zero
-
-
+        Returns:
+            width private instance attribute
         """
-
-        if not isinstance(value, int):
-            raise TypeError("width must be an integer")
-        if value < 0:
-            raise ValueError("width must be >= 0")
-        self.__width = value
+        return self.__width
 
     @property
     def height(self):
-        """ method that returns the value of the height
-
-        Returns:
-            rectangle height
-
-
-        """
-
-        return self.__height
-
-    @height.setetr
-    def height(self, value):
-        """ method that defines the height
+        """Getter method to retrieve the height.
 
         Args:
-            value: height
+            self (Rectangle's object): Refers to instantiated object
 
-        Raises:
-            TypeError: if height is not an integer
-            ValueError: if height is less than zero
-
-
+        Returns:
+            height private instance attribute
         """
+        return self.__height
 
-        if not isinstance(value, int):
-            raise TypeError("height must be an integer")
-        if value < 0:
-            raise ValueError("height must be >= 0")
+    @width.setter
+    def width(self, value):
+        """Setter method for the width.
+
+        Args:
+            self (Rectangle's object): Refers ti instantiated object
+            value (int): Value to replace width private attribute
+
+        Returns:
+            None
+        """
+        handle_exception(value, "width")
+        self.__width = value
+        return None
+
+    @height.setter
+    def height(self, value):
+        """Setter method for the height.
+
+        Args:
+            self (Rectangle's object): Refers to instantiated object
+            value (int): Value to replace height private attribute
+
+        Returns:
+            None
+        """
+        handle_exception(value, "height")
         self.__height = value
+        return None
 
     def area(self):
-        """ Method that calculates the Rectangle area
+        """Calculate the area of rectangle.
 
-        Returns:
-            rectangle area
+        Args:
+            self (Rectangle's object): Refers to instantiated object
 
-
+        Returns
+            Area of rectangle object
         """
-
-        return self.width * self.height
+        return self.__width * self.__height
 
     def perimeter(self):
-        """ Method thst calculates the Rectangle perimeter
+        """Calculate the perimeter of rectangle.
+
+        Args:
+            self (Rectangle's object): Refers to instantiated object
 
         Returns:
-            rectangle perimeter
-
-
+            Perimeter of rectangle object
         """
+        w, h = self.__width, self.__height
+        return 0 if w == 0 or h == 0 else 2 * w + 2 * h
 
-        rectangle = ""
+    def __str__(self):
+        """Builtin 'magic' method to represent Rectangle's objects.
 
-        if self.width == 0 or self.height == 0:
-            return rectangle
+        Args:
+            self (Rectangle's object): Refers to instantiated object
 
-        for i in range(self.height):
-            rectangle += ("#" * self.width) + "\n"
+        Returns:
+            object representation with '#' character on the terminal
+        """
+        rect = ""
+        if self.__width == 0 or self.__height == 0:
+            return rect
+        for i in range(self.__height):
+            rect += "#" * self.__width
+            rect += "\n"
+        return rect[:-1]
 
-        return rectangle[:-1]
+    pass
+
+
+def handle_exception(value, attrib):
+    """Raise exceptions according to defined conventions.
+
+    This function will test @value against predefined conventions and raise
+    exceptions according to those conventions being satisfied or not.
+
+    Args:
+        value (int): Value to be examined
+        attrib (str): Private instance attribute with value @value
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: value is < 0
+        TypeError: value is not an integer
+    """
+    if isinstance(value, int):
+        if value < 0:
+            raise ValueError("{} must be >= 0".format(attrib))
+        else:
+            return None
+    else:
+        raise TypeError("{} must be an integer".format(attrib))
