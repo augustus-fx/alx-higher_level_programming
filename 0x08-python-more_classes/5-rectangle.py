@@ -134,6 +134,18 @@ class Rectangle:
         """
         return f"Rectangle({self.__width}, {self.__height})"
 
+    def __del__(self):
+        """Builtin 'magic' method executes when 'del' is called on an object
+
+        Args:
+            self (Rectangle's object): Refers to instantiated object
+
+        Returns:
+            None
+        """
+        print("Bye rectangle...")
+        return None
+
     pass
 
 
