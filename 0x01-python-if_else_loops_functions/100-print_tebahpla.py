@@ -1,13 +1,8 @@
 #!/usr/bin/python3
-i, j = 122, 26
-while j > 0:
-    if i == 122:
-        print("{:c}".format(i), end="")
-        j, i = j - 1, i - 1
-        continue
-    if i+1 >= 97 and i+1 <= 122:
-        i = i-32
-    elif i+1 >= 65 and i+1 <= 97:
-        i = i+32
-    print("{:c}".format(i), end="")
-    j, i = j-1, i-1
+strtmp = ""
+for i in reversed(range(97, 123)):
+    if (i % 2) == 0:
+        strtmp += chr(i)
+    else:
+        strtmp += chr(i-32)
+print("{}".format(strtmp), end="")
